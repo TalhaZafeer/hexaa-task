@@ -1,28 +1,20 @@
-import React, { useState } from "react";
-import {
-  DailyTimeSeriesResponse,
-  TimeSeriesDaily,
-  TimeSeriesData,
-} from "../../interfaces/DailyTimeSeries.interface";
+import { useState } from "react";
 
-type Props = {
-  data: DailyTimeSeriesResponse;
+type TableProps<T> = {
+  data: T[];
+  columns: TableColumn<T>[];
 };
 
-const Table: React.FC<Props> = ({ data }) => {
-  const dataKey = Object.keys(data).find((key) => key !== "Meta Data");
+export type TableColumn<T> = {
+  key: keyof T;
+  header: string;
+};
 
-  const extractedData = data[dataKey!] as TimeSeriesData;
-  const dates = Object.keys(extractedData);
-  const columns =
-    dates.length > 0
-      ? Object.keys(extractedData[dates[0] as keyof typeof extractedData])
-      : [];
-
+const Table = <T,>({ data, columns }: TableProps<T>) => {
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 10;
 
-  const totalPages = Math.ceil(dates.length / rowsPerPage);
+  const totalPages = Math.ceil(data.length / rowsPerPage);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -37,47 +29,36 @@ const Table: React.FC<Props> = ({ data }) => {
   };
 
   const startIdx = (currentPage - 1) * rowsPerPage;
-  const paginatedDates = dates.slice(startIdx, startIdx + rowsPerPage);
+  const paginatedData = data.slice(startIdx, startIdx + rowsPerPage);
 
-  const startEntry = startIdx + 1;
-  const endEntry = startIdx + paginatedDates.length;
-  const totalEntries = dates.length;
-
-  console.log(extractedData);
   return (
-    <div>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white">
+    <div className="overflow-x-auto">
+      <div className="min-w-max">
+        <table className="w-full mt-4 text-left">
           <thead>
             <tr>
-              <th className="py-2 px-extractedData4 border-b border-gray-200 bg-gray-50 text-center">
-                Date
-              </th>
               {columns.map((col) => (
                 <th
-                  key={col}
-                  className="py-2 px-4 border-b border-gray-200 bg-gray-50 text-center"
+                  key={col.key as string}
+                  className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50 whitespace-nowrap"
                 >
-                  {col.replace(/^\d+\. /, "")}
+                  {col.header}
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {paginatedDates.map((date, idx) => (
+            {paginatedData.map((item, idx) => (
               <tr
-                key={date}
+                key={idx}
                 className={idx % 2 === 0 ? "bg-gray-50" : "bg-white"}
               >
-                <td className="py-2 px-4 border-b border-gray-200 text-center">
-                  {date}
-                </td>
                 {columns.map((col) => (
                   <td
-                    key={col}
-                    className="py-2 px-4 border-b border-gray-200 text-center"
+                    key={col.key as string}
+                    className="p-4 border-b border-blue-gray-50 whitespace-nowrap"
                   >
-                    {extractedData[date][col as keyof TimeSeriesDaily]}
+                    {String(item[col.key])}
                   </td>
                 ))}
               </tr>
@@ -85,26 +66,24 @@ const Table: React.FC<Props> = ({ data }) => {
           </tbody>
         </table>
       </div>
-      <div className="flex justify-between  mt-4">
-        <div>
-          Showing entries from {startEntry} to {endEntry} of {totalEntries}{" "}
-          entries
-        </div>
-        <div className="flex gap-5 items-center">
+      <div className="flex items-center justify-between p-4 border-t border-blue-gray-50">
+        <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+          Page {currentPage} of {totalPages}
+        </p>
+        <div className="flex gap-2">
           <button
+            className="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            type="button"
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
-            className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
           >
             Previous
           </button>
-          <span>
-            Page {currentPage} of {totalPages}
-          </span>
           <button
+            className="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            type="button"
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
-            className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
           >
             Next
           </button>
