@@ -1,39 +1,4 @@
-// import useFetch from "../../hooks/useFetch";
-// import { fetchNewsFeed } from "../../utils/endPoints";
-// import Card from "../../components/Card/Card";
-// import Spinner from "../../components/Spinner/Spinner";
-
-// const NewsFeed = () => {
-//   const { data, isLoading, isRefetching } = useFetch(
-//     "News Feed",
-//     fetchNewsFeed
-//   );
-
-//   console.log(data);
-//   return (
-//     <div className="flex justify-center items-center min-h-screen">
-//       {isLoading || isRefetching ? (
-//         <Spinner />
-//       ) : (
-//         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-//           {data?.feed.map((feed) => (
-//             <Card
-//               key={feed.url}
-//               bannerURL={feed.banner_image}
-//               description={feed.summary}
-//               title={feed.title}
-//               readMoreURL={feed.url}
-//             />
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default NewsFeed;
-
-import React, { useState } from "react";
+import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { fetchNewsFeed } from "../../utils/endPoints";
 import Card from "../../components/Card/Card";
