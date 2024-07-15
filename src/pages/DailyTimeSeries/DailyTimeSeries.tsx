@@ -19,14 +19,17 @@ const DailyTimeSeries = () => {
     ? Object.values(data["Time Series (Daily)"])
     : [];
 
-  console.log(transformedData);
-
   return (
-    <div className="flex items-center justify-center p-10 h-full">
+    <div className="flex items-center justify-center  px-10 h-full">
       {isLoading || isRefetching ? (
         <Spinner />
       ) : (
-        <Table data={transformedData} columns={dailyTimeSeriesColumns} />
+        <Table
+          title="Daily Time Series"
+          data={transformedData}
+          columns={dailyTimeSeriesColumns}
+          rowsPerPage={10}
+        />
       )}
     </div>
   );
