@@ -26,11 +26,11 @@ const Table = <T,>({ data, columns, rowsPerPage, title }: TableProps<T>) => {
   const paginatedData = data.slice(startIdx, startIdx + rowsPerPage);
 
   return (
-    <div className="overflow-x-auto w-screen h-full">
+    <div className="h-full w-full ">
       <h1 className="text-3xl font-semibold leading-tight text-gray-900">
         {title}
       </h1>
-      <div className="min-w-max ">
+      <div className=" overflow-x-auto">
         <table className="w-full mt-4 text-left">
           <thead>
             <tr>
