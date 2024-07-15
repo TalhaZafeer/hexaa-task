@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import Error404 from "./pages/Error404/Error404";
-import { routes } from "./routes";
+import { routes } from "./common/routes";
 import HistoricalOptions from "./pages/HistoricalOptions/HistoricalOptions";
 import DailyTimeSeries from "./pages/DailyTimeSeries/DailyTimeSeries";
 import NewsFeed from "./pages/NewsFeed/NewsFeed";

@@ -6,7 +6,7 @@ import { fetchDailyTimeSeries } from "../../utils/endPoints";
 import Table from "../../components/Table/Table";
 import Spinner from "../../components/Spinner/Spinner";
 import useFetch from "../../hooks/useFetch";
-import { dailyTimeSeriesColumns } from "../../constants";
+import { dailyTimeSeriesColumns } from "../../common/data";
 
 const DailyTimeSeries = () => {
   const { data, isLoading, isRefetching } = useFetch<DailyTimeSeriesResponse>(
@@ -20,7 +20,7 @@ const DailyTimeSeries = () => {
     : [];
 
   return (
-    <div className="flex items-center justify-center  px-10 h-full">
+    <div className="flex items-center justify-center h-full">
       {isLoading || isRefetching ? (
         <Spinner />
       ) : (

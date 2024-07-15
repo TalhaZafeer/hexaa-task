@@ -4,7 +4,7 @@ import {
 } from "../../interfaces/HistoricalOptions.interface";
 import Spinner from "../../components/Spinner/Spinner";
 import Table from "../../components/Table/Table";
-import { historicalOptionsColumns } from "../../constants";
+import { historicalOptionsColumns } from "../../common/data";
 import useFetch from "../../hooks/useFetch";
 import { fetchHistoricalOptions } from "../../utils/endPoints";
 
@@ -18,7 +18,7 @@ const HistoricalOptions = () => {
   const transformedData: HistoricalOptionsContract[] = data ? data.data : [];
 
   return (
-    <div className="flex items-center justify-center px-10 py-5 h-full">
+    <div className="flex items-center justify-center h-full">
       {isLoading || isRefetching ? (
         <Spinner />
       ) : (

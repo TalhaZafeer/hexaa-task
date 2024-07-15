@@ -26,18 +26,18 @@ const Table = <T,>({ data, columns, rowsPerPage, title }: TableProps<T>) => {
   const paginatedData = data.slice(startIdx, startIdx + rowsPerPage);
 
   return (
-    <div className="overflow-x-auto w-screen">
+    <div className="overflow-x-auto w-screen h-full">
       <h1 className="text-3xl font-semibold leading-tight text-gray-900">
         {title}
       </h1>
-      <div className="min-w-max">
+      <div className="min-w-max ">
         <table className="w-full mt-4 text-left">
           <thead>
             <tr>
               {columns.map((col) => (
                 <th
                   key={col.key as string}
-                  className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50 whitespace-nowrap"
+                  className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50 whitespace-nowrap "
                 >
                   {col.header}
                 </th>

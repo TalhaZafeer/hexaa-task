@@ -1,35 +1,7 @@
 import { Link } from "react-router-dom";
-import { routes } from "../../routes";
-import {
-  ErrorIcon,
-  HistoricalOptionsIcon,
-  NewsFeedIcon,
-  TimeSeriesIcon,
-} from "../../icons";
+import { navigationOptions } from "./data";
 
 const NavigationBar = () => {
-  const navigationOptions = [
-    {
-      label: "Daily Time Series",
-      path: routes.timeSeries,
-      icon: <TimeSeriesIcon />,
-    },
-    {
-      label: "Historical Options",
-      path: routes.historicalOptions,
-      icon: <HistoricalOptionsIcon />,
-    },
-    {
-      label: "News Feed",
-      path: routes.newsFeed,
-      icon: <NewsFeedIcon />,
-    },
-    {
-      label: "Error 404 Prototype",
-      path: "dummypath",
-      icon: <ErrorIcon />,
-    },
-  ];
   return (
     <div className="relative flex h-screen w-full max-w-[20rem] flex-col rounded-xl bg-white bg-clip-border p-4 text-gray-700 shadow-xl shadow-blue-gray-900/5">
       <div className="p-4 mb-2">

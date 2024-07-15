@@ -29,11 +29,11 @@ const NewsFeed = () => {
       {isLoading || isRefetching ? (
         <Spinner />
       ) : (
-        <div className="flex flex-col gap-6 px-10 py-5">
+        <div className="flex flex-col gap-6">
           <h1 className="text-3xl font-semibold leading-tight text-gray-900">
             News Feed
           </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
             {paginatedData?.map((feed) => (
               <Card
                 key={feed.url}

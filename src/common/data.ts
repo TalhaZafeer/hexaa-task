@@ -1,6 +1,6 @@
-import { TableColumn } from "./components/Table/Table";
-import { TimeSeriesDaily } from "./interfaces/DailyTimeSeries.interface";
-import { HistoricalOptionsContract } from "./interfaces/HistoricalOptions.interface";
+import { TableColumn } from "../components/Table/Table";
+import { TimeSeriesDaily } from "../interfaces/DailyTimeSeries.interface";
+import { HistoricalOptionsContract } from "../interfaces/HistoricalOptions.interface";
 
 export const dailyTimeSeriesColumns: TableColumn<TimeSeriesDaily>[] = [
   { key: "1. open", header: "Open" },

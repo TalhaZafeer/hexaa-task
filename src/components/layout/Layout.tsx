@@ -6,7 +6,7 @@ const Layout = () => {
     <div className="flex w-screen h-screen overflow-hidden">
       <NavigationBar />
 
-      <div className="flex-1 p-2 bg-gray-100 overflow-y-auto">
+      <div className="flex-1 p-2 bg-gray-300/10 overflow-y-auto px-10 py-5">
         <Outlet />
       </div>
     </div>
